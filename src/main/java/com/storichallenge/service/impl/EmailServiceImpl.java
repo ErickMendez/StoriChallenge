@@ -66,7 +66,8 @@ public class EmailServiceImpl implements EmailService {
 
     @Override
     public String createBodyEmail(String fileName) {
-        var transactionRecords = fileService.readFile(fileName);
+        //var transactionRecords = fileService.readAWSS3File(fileName);
+        var transactionRecords = fileService.readLocalFile(fileName);
 
         var totalBalance = getTotalBalance(transactionRecords);
         var debitAverage = getDebitAverage(transactionRecords);

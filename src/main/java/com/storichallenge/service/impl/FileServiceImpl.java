@@ -9,8 +9,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.math.BigDecimal;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDate;
@@ -24,8 +27,11 @@ public class FileServiceImpl implements FileService {
     @Autowired
     AWSS3 awss3;
 
+    @Value("${path.file}")
+    private String path;
+
     @Override
-    public List<TransactionRecord> readFile(String fileName) {
+    public List<TransactionRecord> readAWSS3File(String fileName) {
         try (BufferedReader br = new BufferedReader(new InputStreamReader(awss3.getFile(fileName)))) {
             return br.lines().skip(1)
                     .filter(Predicate.not(String::isEmpty))
@@ -34,6 +40,21 @@ public class FileServiceImpl implements FileService {
                     .collect(Collectors.toList());
         } catch (Exception e) {
             throw new RuntimeException("error reading csv file" + e);
+        }
+    }
+
+    @Override
+    public List<TransactionRecord> readLocalFile(String fileName) {
+        Path pathToFile = Paths.get(path + fileName);
+
+        try (BufferedReader br = Files.newBufferedReader(pathToFile, StandardCharsets.US_ASCII)) {
+            return br.lines().skip(1)
+                    .filter(Predicate.not(String::isEmpty))
+                    .map(lines -> lines.split(","))
+                    .map(this::generateTransaction)
+                    .collect(Collectors.toList());
+        } catch (IOException ioe) {
+            throw new RuntimeException("error reading csv file");
         }
     }
 
