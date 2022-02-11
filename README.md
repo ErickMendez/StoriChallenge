@@ -21,7 +21,7 @@ La función debe procesar el archivo y enviar información resumida a un usuario
 
 * POST
 
-*enviá un archivo al repositorio S3 de AWS*
+*enviá un archivo al repositorio S3 de AWS, parametros de entrada (file)*
 ```
 /s3/upload-file
 ```
@@ -44,7 +44,7 @@ La función debe procesar el archivo y enviar información resumida a un usuario
 * SpringBoot 2.6.3
 * Java 11
 * Gradle 7.3
-* AWS (IAM)(S3)(Elastic Beanstalk)
+* AWS SDK (IAM)(S3)(Elastic Beanstalk)
 
 ## Instalación
 * Clonar el repositorio y abrir el proyecto con el IDE de tu preferencia
@@ -58,5 +58,30 @@ $ git clone https://github.com/ErickMendez/StoriChallenge.git
 * Ejecutar el archivo ***StoriChallenge11Application***
 
 ## Pruebas con AWS
+* Subir Archivo a S3 de AWS
+```
+http://storichallenge-env.eba-3xd2nhjx.us-east-1.elasticbeanstalk.com/s3/upload-file
+```
+![Image text](https://github.com/ErickMendez/Resources/blob/main/Stori_Challenge/stori_upload_file_01.png)
+![Image text](https://github.com/ErickMendez/Resources/blob/main/Stori_Challenge/stori_upload_file_02.png)
 
-![Image text](https://github.com/ErickMendez/Resources/blob/main/Stori_Challenge/getNameFiles01.png)
+* Solicitar Listado de archivos que existen en el repositorio S3 de AWS
+```
+http://storichallenge-env.eba-3xd2nhjx.us-east-1.elasticbeanstalk.com/s3/name-files
+```
+![Image text](https://github.com/ErickMendez/Resources/blob/main/Stori_Challenge/stori_get_name_files_01.png
+)
+
+* Descargar Archivo que existe en el repositorio S3 de AWS
+```
+http://storichallenge-env.eba-3xd2nhjx.us-east-1.elasticbeanstalk.com/s3/download-file/transactions5.csv
+```
+![Image text](https://github.com/ErickMendez/Resources/blob/main/Stori_Challenge/stori_download_file_01.png
+)
+
+* Enviar estado de cuenta por correo
+```
+http://storichallenge-env.eba-3xd2nhjx.us-east-1.elasticbeanstalk.com/transaction/statement-of-account/erick.mendez.alfaro@gmail.com/transactions5.csv
+```
+![Image text](https://github.com/ErickMendez/Resources/blob/main/Stori_Challenge/stori_send_email_01.png)
+![Image text](https://github.com/ErickMendez/Resources/blob/main/Stori_Challenge/stori_send_email_02.png)
