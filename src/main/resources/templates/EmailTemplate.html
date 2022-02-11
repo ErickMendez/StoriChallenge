@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href='https://fonts.googleapis.com/css?family=Rubik' rel='stylesheet' type='text/css'>
+    <style>
+        body {
+            font-family: 'Rubik', Rubik, sans-serif;
+            margin: 0 auto;
+        }
+        .centered-text{
+            text-align: center;
+        }
+        .no-margin{
+            margin: 0;
+        }
+        .no-margin-top{
+            margin-top: 0;
+        }
+        .no-margin-bottom{
+            margin-bottom: 0;
+        }
+        .right-box{
+            text-align: right;
+            padding-top: 1%;
+            padding-right: 1%;
+        }
+        .left-box{
+            text-align: left;
+            padding-left: 1%;
+        }
+        .centered-box {
+            margin: auto;
+            width: 80%;
+        }
+        .banner-box{
+            background-image: linear-gradient(182deg,#00677f,#2cd5c4);
+            padding: 3% 0 3% 0%;
+            color: white;
+            text-align: center;
+            font-size: 2em;
+        }
+        .body-box{
+            border-left: 1px solid #2cd5c4;
+            border-right: 1px solid #2cd5c4;
+            border-bottom: 1px solid #2cd5c4;
+            font-size: 1.17em;
+            color: #384967;
+        }
+
+        /*Small devices (landscape phones, 576px and up) */
+        @media (min-width: 480px) {
+            .banner-box{
+                background-image: linear-gradient(182deg,#00677f,#2cd5c4);
+                padding: 3% 0 3% 0%;
+                color: white;
+                text-align: center;
+                font-size: 1.17em;
+            }
+            .body-box{
+                border-left: 1px solid #2cd5c4;
+                border-right: 1px solid #2cd5c4;
+                border-bottom: 1px solid #2cd5c4;
+                font-size: .83em;
+                color: #384967;
+            }
+        }
+        /*Medium devices (tablets, 768px and up)*/
+        @media (min-width: 768px) {
+            .banner-box{
+                background-image: linear-gradient(182deg,#00677f,#2cd5c4);
+                padding: 3% 0 3% 0%;
+                color: white;
+                text-align: center;
+                font-size: 1.17em;
+            }
+            .body-box{
+                border-left: 1px solid #2cd5c4;
+                border-right: 1px solid #2cd5c4;
+                border-bottom: 1px solid #2cd5c4;
+                font-size: .83em;
+                color: #384967;
+            }
+        }
+        /*Large devices (desktops, 992px and up)*/
+        @media (min-width: 992px) {
+            .banner-box{
+                background-image: linear-gradient(182deg,#00677f,#2cd5c4);
+                padding: 3% 0 3% 0%;
+                color: white;
+                text-align: center;
+                font-size: 3em;
+            }
+            .body-box{
+                border-left: 1px solid #2cd5c4;
+                border-right: 1px solid #2cd5c4;
+                border-bottom: 1px solid #2cd5c4;
+                font-size: 2em;
+                color: #384967;
+            }
+        }
+        /*Extra large devices (large desktops, 1200px and up)*/
+        @media (min-width: 1200px) {
+            .banner-box{
+                background-image: linear-gradient(182deg,#00677f,#2cd5c4);
+                padding: 3% 0 3% 0%;
+                color: white;
+                text-align: center;
+                font-size: 3em;
+            }
+            .body-box{
+                border-left: 1px solid #2cd5c4;
+                border-right: 1px solid #2cd5c4;
+                border-bottom: 1px solid #2cd5c4;
+                font-size: 2em;
+                color: #384967;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="centered-box">
+        <div class="banner-box">
+            <img class="" src="/resources/images/stori-white.png" data-th-src="|cid:stori-logo|"/>
+            <p class="centered-text no-margin" >Statement of account</p>
+        </div>
+        <div class="body-box">
+            <p class="right-box no-margin"  th:text="'Total balance is: ' + ${totalBalance}"></p>
+
+            <div class="centered-box">
+                <p class="centered-text" >Number of transactions</p>
+                <p class="centered-text" th:utext="${transactionsByMonth}"></p>
+            </div>
+
+            <p class="left-box no-margin-bottom" th:text="'Average debit amount: ' + ${debitAverage}"></p>
+            <p class="left-box no-margin-top" th:text="'Average credit amount: ' + ${creditAverage}"></p>
+        </div>
+    </div>
+</body>
+</html>
