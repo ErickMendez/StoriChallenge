@@ -58,3 +58,5 @@ $ git clone https://github.com/ErickMendez/StoriChallenge.git
 * Ejecutar el archivo ***StoriChallenge11Application***
 
 ## Pruebas con AWS
+
+![Image text](https://github.com/ErickMendez/Resources/blob/main/Stori_Challenge/getNameFiles01.png)
